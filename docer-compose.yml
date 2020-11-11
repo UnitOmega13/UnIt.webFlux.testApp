@@ -1,0 +1,19 @@
+version: "3.8"
+
+networks:
+  default:
+    external:
+      name: backend
+services:
+  mymongodb:
+    image: mongo:latest
+    container_name: mymongodb
+    ports:
+      - 27017:27017
+  test-app-image:
+    image: test-app-image
+    container_name: test-app-image
+    ports:
+      - 8080:8080
+    links:
+      - mymongodb
